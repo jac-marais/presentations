@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0f13;
+  --bg-card: #1a1a24;
+  --text: #e4e4ef;
+  --text-dim: #b0b0c8;
+  --text-bright: #ffffff;
+  --accent: #6366f1;
+  --border: #2a2a3a;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(78, 168, 222, 0.06) 0%, transparent 70%);
+}
+.container { max-width: 640px; width: 100%; }
+h1 { font-size: 2rem; color: var(--text-bright); margin-bottom: 0.5rem; }
+.subtitle { color: var(--text-dim); margin-bottom: 2.5rem; font-size: 1.05rem; }
+.deck-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.deck-list a {
+  display: block;
+  padding: 1.2rem 1.4rem;
+  background: rgba(26, 26, 36, 0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-bright);
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+}
+.deck-list a:hover {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.06);
+}
+.deck-list .desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-top: 0.3rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Presentations</h1>
+  <p class="subtitle">Self-contained HTML slide decks</p>
+  <ul class="deck-list">
+    <li><a href="sample-presentation.html">
+      Presentation Template
+      <span class="desc">Sample deck demonstrating features: dark theme, navigation, SVG diagrams, code blocks</span>
+    </a></li>
+  </ul>
+</div>
+</body>
+</html>
