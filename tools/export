@@ -1,0 +1,71 @@
+#!/bin/bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+IMAGE_NAME="presentation-export"
+
+# Parse args to find the input file and pass the rest through
+INPUT_FILE=""
+DOCKER_ARGS=()
+OUTPUT_DIR="$HOME/Desktop"
+CUSTOM_OUTPUT=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -o)
+      CUSTOM_OUTPUT="$2"
+      OUTPUT_DIR="$(dirname "$(cd "$(dirname "$2")" 2>/dev/null && pwd)/$(basename "$2")" 2>/dev/null || echo "$HOME/Desktop")"
+      DOCKER_ARGS+=("-o" "/output/$(basename "$2")")
+      shift 2
+      ;;
+    --images)
+      DOCKER_ARGS+=("--images")
+      shift
+      ;;
+    -*)
+      DOCKER_ARGS+=("$1")
+      shift
+      ;;
+    *)
+      if [[ -z "$INPUT_FILE" ]]; then
+        INPUT_FILE="$1"
+      else
+        DOCKER_ARGS+=("$1")
+      fi
+      shift
+      ;;
+  esac
+done
+
+if [[ -z "$INPUT_FILE" ]]; then
+  echo "Usage: ./export <presentation.html> [--images] [-o output-path]"
+  echo ""
+  echo "Examples:"
+  echo "  ./export ../joint-planning-history.html              # PDF to ~/Desktop/"
+  echo "  ./export ../joint-planning-history.html --images     # PNGs to ~/Desktop/"
+  echo "  ./export ../sample-presentation.html -o ~/docs/out.pdf"
+  exit 1
+fi
+
+# Resolve input to absolute path
+INPUT_ABS="$(cd "$(dirname "$INPUT_FILE")" && pwd)/$(basename "$INPUT_FILE")"
+INPUT_BASENAME="$(basename "$INPUT_FILE")"
+
+if [[ ! -f "$INPUT_ABS" ]]; then
+  echo "Error: File not found: $INPUT_ABS"
+  exit 1
+fi
+
+# Build image if needed
+if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
+  echo "Building Docker image (first run only)..."
+  docker build -t "$IMAGE_NAME" "$SCRIPT_DIR"
+fi
+
+# Run: mount the input file and output directory
+echo ""
+docker run --rm \
+  -v "$INPUT_ABS:/input/$INPUT_BASENAME:ro" \
+  -v "$OUTPUT_DIR:/output" \
+  "$IMAGE_NAME" \
+  "/input/$INPUT_BASENAME" "${DOCKER_ARGS[@]}"
