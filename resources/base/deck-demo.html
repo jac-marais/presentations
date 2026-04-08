@@ -445,7 +445,7 @@ customElements.define('deck-bar', DeckBar);
       <text x="750" y="22" text-anchor="middle" class="label-dim" font-size="10">HTTP/2</text>
     </svg>
   </deck-diagram>
-  <p class="caption mt-1">SVG labels use <code>.label-blue</code>, <code>.label-dim</code>, etc. from deck-base.css.</p>
+  <p class="caption mt-1">SVG labels use <code>.label-blue</code>, <code>.label-dim</code>, etc. from <code>resources/base/deck-base.css</code>.</p>
 </section>
 
 <!-- SLIDE 5b — Mermaid Diagram (group: layout) -->
@@ -459,7 +459,7 @@ NAV["deck-nav"] --> DECK{{"Deck Base"}}
 DIA["deck-diagram"] --> DECK
 DECK --> CARD["deck-card"]
 DECK --> BAR["deck-bar"]
-DECK -.-> CSS["deck-base.css"]
+DECK -.-> CSS["resources/base/deck-base.css"]
 style DECK fill:#6366f1,stroke:#6366f1,color:#fff,font-size:16px
 style NAV fill:#1a2a3a,stroke:#22d3ee,color:#22d3ee
 style DIA fill:#1a1a30,stroke:#a78bfa,color:#a78bfa
