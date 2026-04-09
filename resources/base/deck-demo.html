@@ -452,7 +452,7 @@ customElements.define('deck-bar', DeckBar);
 <section class="slide" data-group="layout" data-group-label="Layout" data-group-color="#4ea8de">
   <h1>&lt;deck-diagram&gt; + Mermaid</h1>
   <h2>Use Mermaid for relationship graphs, flowcharts, and sequence diagrams.</h2>
-  <div class="diagram-wrap" style="max-width:700px">
+  <div class="diagram-wrap" style="width:100%">
 <pre class="mermaid">
 flowchart LR
 NAV["deck-nav"] --> DECK{{"Deck Base"}}
@@ -468,7 +468,7 @@ style BAR fill:#1a2a1a,stroke:#4ade80,color:#4ade80
 style CSS fill:#1a1a10,stroke:#f59e0b,color:#f59e0b,stroke-dasharray:5 5
 </pre>
   </div>
-  <p class="caption mt-1">Mermaid renders at page load. Wrap in <code>&lt;deck-diagram&gt;</code> for consistent styling.</p>
+  <p class="caption mt-1">Mermaid diagrams should usually run full-width so the graph fills the slide instead of collapsing into a tiny unreadable block.</p>
 </section>
 
 <!-- SLIDE 6 — Bar Charts (group: data) -->
