@@ -1,37 +1,44 @@
 # Presentations
 
-Personal self-contained HTML slide decks, deployed via GitHub Pages.
+Self-contained HTML slide decks, deployed via GitHub Pages.
+
+## Two ways to build a deck
+
+**Standalone (no dependencies).** Copy `sample-presentation.html` and edit the content. One file with all CSS, JS, and SVG inline. Good for quick one-off decks that never need to share styling with anything else.
+
+**Base system (reusable components).** Seed from `resources/base/deck-demo.html` and replace the demo content. Uses shared CSS primitives plus Lit web components (`<deck-nav>`, `<deck-diagram>`, `<deck-card>`, `<deck-bar>`) loaded from CDN. Good for decks that benefit from consistent styling, grouped navigation, Mermaid diagrams, and declarative data visualizations.
+
+## Files
+
+| File | Purpose |
+| ---- | ------- |
+| `index.html` | Landing page listing available decks |
+| `sample-presentation.html` | Standalone single-file template |
+| `resources/base/deck-base.css` | Canonical base CSS: variables, layout, typography, tables, SVG label classes |
+| `resources/base/deck-components.js` | Lit components: `<deck-nav>`, `<deck-diagram>`, `<deck-card>`, `<deck-bar>` |
+| `resources/base/deck-demo.html` | Component showcase and seed template for new base-system decks |
+
+The base system expects `deck-base.css` and `deck-components.js` to be **inlined** into each deck's HTML so every deck is a single double-clickable file. `deck-demo.html` is already set up this way and is the recommended starting point for base-system decks.
 
 ## Usage
 
-Each presentation is a single `.html` file with inline CSS, JS, and SVG. No build step or server required.
-
-- **View locally:** double-click any `.html` file
+- **View locally:** double-click any `.html` file — no build step, no server
 - **View deployed:** visit the GitHub Pages URL (private, requires repo access)
-- **Shared base assets:** `resources/base/`
-- **Add a new deck:** copy `sample-presentation.html` and edit the content
-
-## Decks
-
-| File | Description |
-| ---- | ----------- |
-| `sample-presentation.html` | Template deck demonstrating features: dark theme, scroll-snap navigation, inline SVG diagrams, code blocks, and entrance animations |
-
-## Shared Base Assets
-
-| File | Description |
-| ---- | ----------- |
-| `resources/base/deck-base.css` | Shared presentation CSS primitives, layout helpers, typography, tables, and SVG label classes |
-| `resources/base/deck-components.js` | Lit web components for deck navigation, diagram framing, cards, and bars |
-| `resources/base/deck-demo.html` | Component showcase and reference deck for the shared base system |
 
 ## Features
 
-- Keyboard navigation (arrow keys, spacebar)
+Both paths share:
+
+- Keyboard navigation (arrow keys, spacebar, Page Up / Page Down)
 - Scroll-snap slide alignment
-- Nav dots with title tooltips
 - Scroll progress bar
 - IntersectionObserver entrance animations
 - Responsive layout
 - Dark theme with CSS custom properties
-- No external dependencies (except Google Fonts)
+
+Base-system decks additionally provide:
+
+- Colored nav-dot groups with hover tooltips
+- Category badges that react to the currently visible section
+- Glassmorphic diagram containers and cards
+- Declarative bar charts (`<deck-bar>`) and Mermaid flowcharts/sequence diagrams
