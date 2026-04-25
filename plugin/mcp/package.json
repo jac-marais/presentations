@@ -1,0 +1,13 @@
+{
+  "name": "slide-capture-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that exports HTML slide decks to PDF or PNG images via headless Chromium in Docker",
+  "type": "module",
+  "main": "server.mjs",
+  "bin": {
+    "slide-capture-mcp": "server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

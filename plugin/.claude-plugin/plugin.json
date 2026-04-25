@@ -1,0 +1,11 @@
+{
+  "name": "html-slide-builder",
+  "version": "0.2.0",
+  "description": "Build self-contained HTML slide decks with inline SVG diagrams from source documents",
+  "author": {
+    "name": "Scale AI",
+    "email": "agents@scale.com"
+  },
+  "repository": "https://github.com/scaleapi/claude-code",
+  "skills": "./skills/"
+}
